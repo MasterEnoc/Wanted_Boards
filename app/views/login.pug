@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title "Login | Wanted Boards "
+    link(rel="stylesheet" type="text/css" href="./styles/login.css")
+  body
+    h1 Log in
+    #error
+      if error
+        div(class="login-error")
+          p(id="login-error-message") Your username is not valid, enter with a valid username or make a new user
+    form(method="post" action="/login")
+      div(class="form-element")
+        label(for="username") Username
+        input(autofocus type="text" id="username" name="username")
+      div(class="form-element")
+        label(for="pwd") Password
+        input(type="password" id="pwd" name="password")
+      div(class="form-element")
+        input(type="submit" value="Log in" id="submit-button")

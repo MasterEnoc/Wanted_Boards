@@ -1,0 +1,71 @@
+$first-color: #372073;
+$second-color: #4573a2;
+$third-color: #69adb5;
+$login-font: monospace;
+
+@mixin back-font-color($color, $font) {
+    background-color: $color;
+    font-family: $font
+}
+
+@mixin text-color {
+    color: white;
+}
+
+%login-element{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2%;
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include back-font-color($first-color, $login-font);
+}
+
+h1 {
+    text-align: center;
+    @include text-color;
+}
+
+.form-element {
+    @extend %login-element;
+    width: 25%;
+}
+
+input {
+    width: 100%;
+}
+
+#submit-button {
+    @include back-font-color($second-color, $login-font);
+    @include text-color;
+    border: none;
+
+    &:hover {
+	background-color: $third-color;
+    }
+}
+
+label {
+    @include text-color;
+    display: block;
+    font-size: 15px;
+    text-align: left;
+}
+
+.login-error{
+    @extend %login-element;
+    font-size: 16px;
+    width: 40%;
+    border: 1px solid red;
+    background-color: whitesmoke;
+}
+
+#login-error-message{
+    color: red;
+}

@@ -1,0 +1,58 @@
+.login-error, .form-element {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2%;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #372073;
+  font-family: monospace;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+.form-element {
+  width: 25%;
+}
+
+input {
+  width: 100%;
+}
+
+#submit-button {
+  background-color: #4573a2;
+  font-family: monospace;
+  color: white;
+  border: none;
+}
+#submit-button:hover {
+  background-color: #69adb5;
+}
+
+label {
+  color: white;
+  display: block;
+  font-size: 15px;
+  text-align: left;
+}
+
+.login-error {
+  font-size: 16px;
+  width: 40%;
+  border: 1px solid red;
+  background-color: whitesmoke;
+}
+
+#login-error-message {
+  color: red;
+}
+
+/*# sourceMappingURL=login.css.map */

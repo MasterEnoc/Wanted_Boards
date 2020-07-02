@@ -1,0 +1,24 @@
+{
+  "name": "wanted",
+  "version": "1.0.0",
+  "description": "Wanted board for teams",
+  "main": "./app/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node ./app/server.js"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^3.0.0",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "mocha": "^8.0.1",
+    "sass": "^1.26.9"
+  }
+}
