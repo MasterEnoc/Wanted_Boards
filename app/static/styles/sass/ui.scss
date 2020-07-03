@@ -1,0 +1,36 @@
+@use "base";
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin navHeader-element($fBasis){
+    flex-basis: $fBasis;
+    color: white;
+}
+
+body {
+    color: base.$second-color;
+    font-family: base.$primary-font;
+    margin: 0;
+    background-color: base.$third-color;
+}
+
+.box-container {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    background-color: base.$first-color;
+}
+
+#app-name {
+    @include navHeader-element(20%)
+}
+
+#board {
+    @include navHeader-element(60%)
+}
+
+#username {
+    @include navHeader-element(20%)
+}

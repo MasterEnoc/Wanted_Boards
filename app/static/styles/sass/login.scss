@@ -1,16 +1,4 @@
-$first-color: #372073;
-$second-color: #4573a2;
-$third-color: #69adb5;
-$login-font: monospace;
-
-@mixin back-font-color($color, $font) {
-    background-color: $color;
-    font-family: $font
-}
-
-@mixin text-color {
-    color: white;
-}
+@use "base";
 
 %login-element{
     display: block;
@@ -24,12 +12,12 @@ $login-font: monospace;
 }
 
 body {
-    @include back-font-color($first-color, $login-font);
+    @include base.back-font-color(base.$first-color, base.$primary-font);
 }
 
 h1 {
     text-align: center;
-    @include text-color;
+    color: white;
 }
 
 .form-element {
@@ -42,17 +30,17 @@ input {
 }
 
 #submit-button {
-    @include back-font-color($second-color, $login-font);
-    @include text-color;
+    @include base.back-font-color(base.$second-color, base.$primary-font);
+    color: white;
     border: none;
 
     &:hover {
-	background-color: $third-color;
+	background-color: base.$third-color;
     }
 }
 
 label {
-    @include text-color;
+    color: white;
     display: block;
     font-size: 15px;
     text-align: left;

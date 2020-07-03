@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #4573a2;
+  font-family: monospace;
+  margin: 0;
+  background-color: #69adb5;
+}
+
+.box-container {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  background-color: #372073;
+}
+
+#app-name {
+  flex-basis: 20%;
+  color: white;
+}
+
+#board {
+  flex-basis: 60%;
+  color: white;
+}
+
+#username {
+  flex-basis: 20%;
+  color: white;
+}
+
+/*# sourceMappingURL=ui.css.map */

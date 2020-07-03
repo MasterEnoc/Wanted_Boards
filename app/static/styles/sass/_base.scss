@@ -1,0 +1,9 @@
+$first-color: #372073;
+$second-color: #4573a2;
+$third-color: #69adb5;
+$primary-font: monospace;
+
+@mixin back-font-color($color, $font) {
+    background-color: $color;
+    font-family: $font
+}
