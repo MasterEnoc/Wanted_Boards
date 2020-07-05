@@ -1,14 +1,14 @@
 doctype html
 html
   head
-    title "Login | Wanted Boards "
+    title Login | Wanted Boards
     link(rel="stylesheet" type="text/css" href="./styles/login.css")
   body
     h1 Log in
     #error
       if error
         div(class="login-error")
-          p(id="login-error-message") Your username is not valid, enter with a valid username or make a new user
+          p(id="login-error-message") Your username or password are not valid, enter with a valid username or password
     form(method="post" action="")
       div(class="form-element")
         label(for="username") Username

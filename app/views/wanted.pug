@@ -1,7 +1,21 @@
 doctype html
 html
   head
-    title "Login | Wanted Boards "
-    link(rel="stylesheet" type="text/css" href="./styles/login.css")
+    title Wanted Boards
+    link(rel="stylesheet" type="text/css" href="./styles/ui.css")
   body
-    h1 User Interface
+    nav(class="box-container")
+      div(id="app-name") Wanted Boards
+      div(id="board") X Board
+      div(id="username") Username
+
+    div(id="boards-area")
+
+      div(class="wanted-board" id="todo")
+        h2 Todo
+
+      div(class="wanted-board" id="doing")
+        h2 Doing
+
+      div(class="wanted-board" id="done")
+        h2 Done

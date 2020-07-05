@@ -13,7 +13,7 @@ body {
     color: base.$second-color;
     font-family: base.$primary-font;
     margin: 0;
-    background-color: base.$third-color;
+    background-color: base.$second-color;
 }
 
 .box-container {
@@ -21,6 +21,7 @@ body {
     height: 50px;
     align-items: center;
     background-color: base.$first-color;
+    font-size: 1rem;
 }
 
 #app-name {
@@ -33,4 +34,28 @@ body {
 
 #username {
     @include navHeader-element(20%)
+}
+
+#boards-area {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    h2 {
+        text-align: center;
+    }
+}
+
+.wanted-board {
+    border: 1px solid black;
+    margin-top: 1%;
+    width: 25%;
+    background-color: #202324;
+    color: whitesmoke;
+}
+
+.wanted-element{
+    margin: 5px;
+    background-color: #454a4d;
+    color: white;
 }
