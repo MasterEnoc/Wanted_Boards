@@ -23,9 +23,8 @@ function handlePostLogin(req, res){
             }
 
             if (fUser && password==req.body.password ){
-                res.render('wanted', (err, html)=>{
-                    res.send(html);
-                });
+                res.redirect('/'+req.body.username);
+
             } else {
                 res.render('login',{error:true},(err, html)=>{
                     res.send(html);

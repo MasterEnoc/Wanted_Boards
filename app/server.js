@@ -1,6 +1,7 @@
 const express = require('express');
 const {readFile} = require('fs');
 const {loginRouter} = require('./routes/loginRouting');
+const {usersPath} = require('./userPath');
 
 const app = express();
 
@@ -16,5 +17,11 @@ app.get('/', (req, res)=>{
 });
 
 app.all('/login', loginRouter);
+
+app.get(/\/[`$(usersPath)`]/, (req, res)=>{
+    res.render('wanted', (err, html)=>{
+        res.send(html);
+    });
+});
 
 app.listen(8888);
