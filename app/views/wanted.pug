@@ -13,9 +13,15 @@ html
 
       div(class="wanted-board" id="todo")
         h2 Todo
+        for element in boards.Todo
+          div(class="wanted-element")= element
 
       div(class="wanted-board" id="doing")
         h2 Doing
+        for element in boards.Doing
+          div(class="wanted-element")= element
 
       div(class="wanted-board" id="done")
         h2 Done
+        for element in boards.Done
+          div(class="wanted-element")= element
