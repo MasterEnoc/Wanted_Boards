@@ -1,7 +1,7 @@
 const express = require('express');
 const {readFile} = require('fs');
 const {loginRouter} = require('./routes/loginRouting');
-const {userPathHandler} = require('./routes/userPathHandler');
+const {userRouter, userRouterBoard} = require('./routes/userPathRouter');
 
 const {usersPath} = require('./userPath');
 const app = express();
@@ -19,6 +19,7 @@ app.get('/', (req, res)=>{
 
 app.all('/login', loginRouter);
 
-app.get(/\/[`$(usersPath)`]/, (req, res)=> userPathHandler(req, res));
+app.use(usersPath, userRouter, userRouterBoard );
+
 
 app.listen(8888);

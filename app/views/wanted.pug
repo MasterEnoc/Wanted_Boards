@@ -6,22 +6,28 @@ html
   body
     nav(class="box-container")
       div(id="app-name") Wanted Boards
-      div(id="board")= title
+      div(id="board")
+        div(id="relative-container")
+          div(id="div-dropdown")= title
+          div(id="dropdown")
+            for board in boards
+              button(type="submit" formmethod="get" formaction="/root/"+board)= board
+
       div(id="username")= username
 
     div(id="boards-area")
 
       div(class="wanted-board" id="todo")
         h2 Todo
-        for element in boards.Todo
+        for element in tables.Todo
           div(class="wanted-element")= element
 
       div(class="wanted-board" id="doing")
         h2 Doing
-        for element in boards.Doing
+        for element in tables.Doing
           div(class="wanted-element")= element
 
       div(class="wanted-board" id="done")
         h2 Done
-        for element in boards.Done
+        for element in tables.Done
           div(class="wanted-element")= element

@@ -1,14 +1,15 @@
 const {readFile, readdir} = require('fs');
-const {basename, join} = require('path');
+const {basename, join, parse} = require('path');
 const {homedir} = require('os');
 
-let wantedTemplate = {
-    title:'',
-    username:'',
-    boards:[]
-};
-
 function userPathHandler(req, res){
+
+    let wantedTemplate = {
+        title:'',
+        username:'',
+        boards:[],
+        tables:[]
+    };
 
     const username = basename(basename(req.originalUrl));
     const boardDir = join(homedir(), 'wanted_boards', username, 'boards');
@@ -19,7 +20,8 @@ function userPathHandler(req, res){
 
             wantedTemplate.title = Object.keys(wantedBoard);
             wantedTemplate.username = username;
-            wantedTemplate.boards = wantedBoard[Object.keys(wantedBoard)];
+            wantedTemplate.tables = wantedBoard[Object.keys(wantedBoard)];
+            wantedTemplate.boards = files.map(file => parse(file).name);
 
             res.render('wanted', wantedTemplate, (err, html)=>{
                 res.send(html);
