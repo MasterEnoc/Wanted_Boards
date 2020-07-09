@@ -2,7 +2,7 @@ doctype html
 html
   head
     title Wanted Boards
-    link(rel="stylesheet" type="text/css" href="./styles/ui.css")
+    link(rel="stylesheet" type="text/css" href="/styles/ui.css")
   body
     nav(class="box-container")
       div(id="app-name") Wanted Boards
@@ -11,7 +11,8 @@ html
           div(id="div-dropdown")= title
           div(id="dropdown")
             for board in boards
-              button(type="submit" formmethod="get" formaction="/root/"+board)= board
+              form(method="get" action= '/'+username+'/'+board)
+                button= board
 
       div(id="username")= username
 

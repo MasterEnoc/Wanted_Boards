@@ -1,6 +1,6 @@
 const userRouter = require('express').Router();
 const userRouterBoard = require('express').Router();
-const {userPathHandler} = require('./userPathHandler');
+const {userPathHandler, userPathBoardHandler} = require('./userPathHandler');
 const {usersPath} = require('../userPath');
 
 userRouter.get('/', (req, res)=>{
@@ -8,7 +8,7 @@ userRouter.get('/', (req, res)=>{
 });
 
 userRouterBoard.get('/*', (req, res)=>{
-    res.send('lmao');
+    userPathBoardHandler(req, res);
 });
 
 module.exports = {

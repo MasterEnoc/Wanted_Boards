@@ -10,7 +10,6 @@ app.set('views', './app/views');
 app.set('view engine', 'pug');
 
 app.use(express.static('app/static/', {index:false}));
-app.use('/login',express.static('app/static/', {index:false}));
 app.use(express.urlencoded({extended:true}));
 
 app.get('/', (req, res)=>{

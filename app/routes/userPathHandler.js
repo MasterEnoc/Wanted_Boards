@@ -30,6 +30,32 @@ function userPathHandler(req, res){
     });
 }
 
+function userPathBoardHandler(req, res){
+    let boardData = {
+        title: basename(req.path),
+        username: basename(req.baseUrl),
+        boards:[],
+        tables:[]
+    };
+
+    const boardDir = join(homedir(), 'wanted_boards', boardData.username, 'boards');
+
+    readdir(boardDir, (err, files)=>{
+        readFile(join(boardDir, boardData.title+'.json'), (err, data)=>{
+
+            const wantedBoard = JSON.parse(data);
+
+            boardData.boards = files.map(file => parse(file).name);
+            boardData.tables = wantedBoard[Object.keys(wantedBoard)];
+
+            res.render('wanted', boardData, (err, html)=>{
+                res.send(html);
+            });
+        });
+    });
+}
+
 module.exports = {
-    'userPathHandler':userPathHandler
+    'userPathHandler':userPathHandler,
+    'userPathBoardHandler':userPathBoardHandler
 };
