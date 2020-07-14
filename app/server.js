@@ -1,7 +1,7 @@
 const express = require('express');
 const {readFile} = require('fs');
 const {loginRouter} = require('./routes/loginRouting');
-const {userRouter, userRouterBoard} = require('./routes/userPathRouter');
+const {userRouter, userRouterBoard, updateBoard} = require('./routes/userPathRouter');
 
 const {usersPath} = require('./userPath');
 const app = express();
@@ -18,7 +18,6 @@ app.get('/', (req, res)=>{
 
 app.all('/login', loginRouter);
 
-app.use(usersPath, userRouter, userRouterBoard );
-
+app.use(usersPath, [userRouter, updateBoard, userRouterBoard] );
 
 app.listen(8888);

@@ -1,5 +1,7 @@
 @use "base";
 
+$element-color: #454a4d;
+
 * {
     box-sizing: border-box;
 }
@@ -68,7 +70,7 @@ body {
 
 .wanted-element{
     margin: 5px;
-    background-color: #454a4d;
+    background-color: $element-color;
     color: white;
 }
 
@@ -114,3 +116,36 @@ body {
         display: block;
     }
 }
+
+.add-struct {
+    display: flex;
+    margin: 5px;
+
+    .add-text{
+        flex-basis: 80%;
+        resize: none;
+        background-color: $element-color;
+        border: none;
+        color: whitesmoke;
+
+        &:focus {
+            outline: 2px solid green;
+        }
+    }
+
+    .add-btn {
+        flex-basis: 20%;
+        margin-left: 4px;
+        border: 1px solid #009900;
+        border-radius: 5px;
+        background-color: #1aff1a;
+        color: black;
+        font-weight: bold;
+    }
+
+    .table-name{
+        display: none;
+    }
+}
+
+

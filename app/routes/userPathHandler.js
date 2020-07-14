@@ -1,4 +1,4 @@
-const {readFile, readdir} = require('fs');
+const {readFile, readdir, writeFile} = require('fs');
 const {basename, join, parse} = require('path');
 const {homedir} = require('os');
 
@@ -55,7 +55,29 @@ function userPathBoardHandler(req, res){
     });
 }
 
+function updateHandler(req, res){
+    const pathElements = req.originalUrl.split('/');
+    const user = pathElements[1];
+    const board = pathElements[2];
+    const table = req.body.table;
+    const fileUrl = join(homedir(), 'wanted_boards', user, 'boards', board+'.json');
+
+    if (req.body.text) {
+        readFile(fileUrl, (err, data)=>{
+            let file = JSON.parse(data);
+            file[board][table].push(req.body.text);
+            writeFile(fileUrl, JSON.stringify(file), (err)=>{
+                if (err) throw err;
+                res.redirect('back');
+            });
+        });
+    } else {
+        res.redirect('back');
+    }
+};
+
 module.exports = {
     'userPathHandler':userPathHandler,
-    'userPathBoardHandler':userPathBoardHandler
+    'userPathBoardHandler':userPathBoardHandler,
+    'updateHandler':updateHandler
 };

@@ -104,4 +104,31 @@ body {
   display: block;
 }
 
+.add-struct {
+  display: flex;
+  margin: 5px;
+}
+.add-struct .add-text {
+  flex-basis: 80%;
+  resize: none;
+  background-color: #454a4d;
+  border: none;
+  color: whitesmoke;
+}
+.add-struct .add-text:focus {
+  outline: 2px solid green;
+}
+.add-struct .add-btn {
+  flex-basis: 20%;
+  margin-left: 4px;
+  border: 1px solid #009900;
+  border-radius: 5px;
+  background-color: #1aff1a;
+  color: black;
+  font-weight: bold;
+}
+.add-struct .table-name {
+  display: none;
+}
+
 /*# sourceMappingURL=ui.css.map */
