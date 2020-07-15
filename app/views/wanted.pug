@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    include includesWanted/form.pug
     title Wanted Boards
     link(rel="stylesheet" type="text/css" href="/styles/ui.css")
   body
@@ -11,36 +12,15 @@ html
           div(id="div-dropdown")= title
           div(id="dropdown")
             for board in boards
-              form(method="get" action="./"+board)
+              form(method="get" action="/"+username+"/"+board)
                 button= board
 
       div(id="username")= username
 
     div(id="boards-area")
 
-      div(class="wanted-board" id="todo")
-        h2 Todo
-        for element in tables.Todo
-          div(class="wanted-element")= element
-        form(class="add-struct" method="post" action="/"+username+"/"+title+"/update")
-          textarea(class="add-text" placeholder="Add text for a new task" name="text")
-          input(type="text" class="table-name" value="Todo" name="table")
-          button(class="add-btn") Add
+      +generateForm(username, title, tables.Todo, "Todo")
 
-      div(class="wanted-board" id="doing")
-        h2 Doing
-        for element in tables.Doing
-          div(class="wanted-element")= element
-        form(class="add-struct" method="post" action="/"+username+"/"+title+"/update")
-          textarea(class="add-text" placeholder="Add text for a new task" name="text")
-          input(type="text" class="table-name" value="Doing" name="table")
-          button(class="add-btn") Add
+      +generateForm(username, title, tables.Doing, "Doing")
 
-      div(class="wanted-board" id="done")
-        h2 Done
-        for element in tables.Done
-          div(class="wanted-element")= element
-        form(class="add-struct" method="post" action="/"+username+"/"+title+"/update")
-          textarea(class="add-text" placeholder="Add text for a new task" name="text")
-          input(type="text" class="table-name" value="Done" name="table")
-          button(class="add-btn") Add
+      +generateForm(username, title, tables.Done, "Done")

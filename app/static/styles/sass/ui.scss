@@ -44,48 +44,14 @@ body {
 
 }
 
-#username {
-    @include navHeader-element(20%);
-    border-left: 2px solid white;
-    padding-left: 5px;
-}
-
-#boards-area {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-
-    h2 {
-        text-align: center;
-    }
-}
-
-.wanted-board {
-    border: 1px solid black;
-    margin-top: 1%;
-    width: 25%;
-    background-color: #202324;
-    color: whitesmoke;
-}
-
-.wanted-element{
-    margin: 5px;
-    background-color: $element-color;
-    color: white;
-}
-
-#relative-container{
+#relative-container {
     display: relative;
     padding-top: 15.5px;
-}
-
-#relative-container {
     height: 100%;
 }
 
 #div-dropdown {
     height: 100%;
-
 }
 
 #dropdown {
@@ -117,35 +83,92 @@ body {
     }
 }
 
-.add-struct {
+#username {
+    @include navHeader-element(20%);
+    border-left: 2px solid white;
+    padding-left: 5px;
+}
+
+#boards-area {
     display: flex;
-    margin: 5px;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
 
-    .add-text{
-        flex-basis: 80%;
-        resize: none;
-        background-color: $element-color;
-        border: none;
-        color: whitesmoke;
+.wanted-board {
+    border: 1px solid black;
+    margin-top: 1%;
+    width: 25%;
+    background-color: #202324;
+    color: whitesmoke;
 
-        &:focus {
-            outline: 2px solid green;
-        }
-    }
-
-    .add-btn {
-        flex-basis: 20%;
-        margin-left: 4px;
-        border: 1px solid #009900;
-        border-radius: 5px;
-        background-color: #1aff1a;
-        color: black;
-        font-weight: bold;
-    }
-
-    .table-name{
-        display: none;
+    h2{
+        text-align: center;
     }
 }
 
+.add-struct {
+    display: flex;
+    width: 100%;
+    align-items: center;
 
+    *{
+        flex-grow: 0;
+        flex-shrink: 0;
+        border: 0;
+    }
+}
+
+.wanted-element {
+    background-color: $element-color;
+    color: white;
+    width: 85%;
+    overflow-wrap: break-word;
+    margin: 5px;
+}
+
+.delete-element {
+    width: 13%;
+}
+
+
+
+.inv-element {
+    display: none;
+}
+
+.delete-btn {
+    width: 80%;
+    padding: 0;
+    font-weight: bold;
+    border: 1px solid #eeA47fff;
+    border-radius: 5px;
+    background-color: #ed2B33ff;
+
+}
+
+.add-text {
+    width: 80%;
+    resize: none;
+    background-color: $element-color;
+    border: none;
+    color: whitesmoke;
+    margin: 5px;
+
+    &:focus {
+        outline: 2px solid green;
+    }
+}
+
+.add-btn {
+    padding:  2.5% 0 2.5% 0;
+    width: 16%;
+    margin-left: 0px;
+    border: 1px solid #009900;
+    border-radius: 5px;
+    background-color: #1aff1a;
+    color: black;
+    font-weight: bold;
+    margin: 0 auto 0 auto;
+    height: 100%;
+}

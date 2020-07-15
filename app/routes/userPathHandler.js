@@ -76,8 +76,27 @@ function updateHandler(req, res){
     }
 };
 
+function deleteHandler(req, res){
+    const pathElements = req.originalUrl.split('/');
+    const user = pathElements[1];
+    const board = pathElements[2];
+    const table = req.query.table;
+    const elementNo = req.query.elementNo;
+    const fileUrl = join(homedir(), 'wanted_boards', user, 'boards', board+'.json');
+
+    readFile(fileUrl, (err, data)=>{
+        let file = JSON.parse(data);
+        file[board][table].splice(elementNo, 1);
+
+        writeFile(fileUrl, JSON.stringify(file), (err)=>{
+            res.redirect('back');
+        });
+    });
+};
+
 module.exports = {
     'userPathHandler':userPathHandler,
     'userPathBoardHandler':userPathBoardHandler,
-    'updateHandler':updateHandler
+    'updateHandler':updateHandler,
+    'deleteHandler':deleteHandler
 };

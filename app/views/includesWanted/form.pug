@@ -1,0 +1,16 @@
+mixin generateForm(username, title, tableElements, table)
+  div(class="wanted-board")
+    h2= table
+    - let counter = 0
+    for element in tableElements
+      div(class="add-struct")
+        div(class="wanted-element")= element
+        form(class="delete-element" method="get" action="/"+username+"/"+title+"/delete")
+          input(type="text" class="inv-element" value=counter name="elementNo")
+          input(type="text" class="inv-element" value=table name="table")
+          button(class="delete-btn") D
+      - counter++
+    form(class="add-struct" method="post" action="/"+username+"/"+title+"/update")
+      textarea(class="add-text" placeholder="Add text for a new task" name="text")
+      input(type="text" class="inv-element" value=table name="table")
+      button(class="add-btn") Add
