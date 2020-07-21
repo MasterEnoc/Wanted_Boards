@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# This scripts makes a new user directory and json files, it has to be provided with user and
+# password to work.
+
+# ./user new_user_name
+
+wanted=~/wanted_boards
+
+if [ -z "$1" ]; then
+    echo 'user argument was not specified' >&2
+    exit 1
+fi
+
+if ! [ -d "$wanted" ]; then
+    echo "wanted_boards directory does not exists, make it running the \"defaultDir\" script or make it manually" >&2
+    exit 1
+fi
+
+if [ -d "$wanted/$1" ]; then
+    echo "user already exists, you can add a board running \"board\" script" >&2
+    exit 1
+fi
+
+read -sp 'password: '
+echo ""
+
+mkdir "$wanted/$1"
+mkdir "$wanted/$1/boards"
+
+echo "{
+        \"$1\":\"$1\",
+        \"password\":\"$REPLY\"
+}" >> "$wanted/$1/$1.json"

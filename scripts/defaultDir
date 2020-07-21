@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# This scripts make a default user and board which helps to know how is the structure
+# of each file and where are located.
+
+# -b flag makes a bare directory structure with all the directories needed by wanted boards
+# users and boards can be made with its respectively script
+
+wanted=~/wanted_boards
+function errorEvaluation {
+    if [ -d "$wanted" ]; then
+        echo 'wanted_boards already exists in your home directory, delete it and use again this command or use user or board script to make a new user or board respectively' >&2
+        exit 1
+    fi
+}
+
+case $1 in
+    -b)
+        errorEvaluation
+
+        mkdir "$wanted"
+    ;;
+    *)
+        errorEvaluation
+
+        mkdir "$wanted"
+
+        mkdir "$wanted/root"
+
+        echo "{
+            \"user\":\"user\",
+            \"password\":\"password\"
+        }" >> "$wanted/root/root.json"
+
+        mkdir "$wanted/root/boards"
+
+        echo "{
+             \"welcome\":{
+             \"Todo\":[\"Welcome to wanted boards\"],
+             \"Doing\":[\"You can make a new board running the \"board\" script\"],
+             \"Done\":[\"You can add tasks writing and clicking on the 'add' button and delete tasks clicking on the 'D' button \"]}
+        }" >> "$wanted/root/boards/welcome.json"
+    ;;
+esac
+

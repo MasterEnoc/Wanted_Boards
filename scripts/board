@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Make a new board file with the json structure, ready to add and delete files using
+# wanted boads in a web browser. To make a new board add as argument of this script
+# the name you want to the new board.
+
+# ./board user new_board
+
+wanted=~/wanted_boards
+
+if [ -z "$1" ]; then
+    echo 'user argument was not specified' >&2
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    echo 'new board name was not specified' >&2
+    exit 1
+fi
+
+if ! [ -d "$wanted" ]; then
+    echo "wanted_boards directory does not exists, make it running the \"defaultDir\" script or make it manually" >&2
+    exit 1
+fi
+
+if ! [ -d "$wanted/$1" ]; then
+    echo "user does not exist, make it running the \"user\" script or make it manually" >&2
+    exit 1
+fi
+
+echo "{
+    \"$2\":{
+    \"Todo\":[],
+    \"Doing\":[],
+    \"Done\":[]}
+}" >> "$wanted/$1/boards/$2.json"
