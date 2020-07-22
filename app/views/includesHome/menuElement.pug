@@ -1,0 +1,4 @@
+mixin generateMenuElement(board)
+  div(class="menu-element")
+    form(class="menu-form" method="get" action="/"+username+"/"+board)
+      button(class="menu-button")= board

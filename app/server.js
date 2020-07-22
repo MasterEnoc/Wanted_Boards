@@ -3,7 +3,6 @@ const {readFile} = require('fs');
 const {loginRouter} = require('./routes/loginRouting');
 const {userRouter, userRouterBoard, updateBoard, deleteBoard} = require('./routes/userPathRouter');
 
-const {usersPath} = require('./userPath');
 const app = express();
 
 app.set('views', './app/views');
@@ -18,6 +17,6 @@ app.get('/', (req, res)=>{
 
 app.all('/login', loginRouter);
 
-app.use(usersPath, [userRouter, updateBoard, deleteBoard, userRouterBoard] );
+app.use(/\/([^/])*/, [userRouter, updateBoard, deleteBoard, userRouterBoard]);
 
 app.listen(8888);

@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    include includesHome/menuElement.pug
+    title Wanted Boards
+    link(rel="stylesheet" type="text/css" href="/styles/ui.css")
+  body
+    nav(class="flex-container")
+      div(id="app-name") Wanted Boards
+      div(id="welcome") Welcome home #{username}, select a board to start using it
+    section(class="flex-menu")
+      for board in boards
+        +generateMenuElement(board)

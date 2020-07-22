@@ -18,7 +18,7 @@ body {
     background-color: base.$second-color;
 }
 
-.box-container {
+.flex-container {
     display: flex;
     height: 50px;
     align-items: center;
@@ -61,6 +61,7 @@ body {
     border-top: 2px solid rgba(0, 0, 0, 0);
 
     button {
+        cursor: pointer;
         display: block;
         outline: none;
         border: none;
@@ -144,7 +145,7 @@ body {
     border: 1px solid #eeA47fff;
     border-radius: 5px;
     background-color: #ed2B33ff;
-
+    cursor: pointer;
 }
 
 .add-text {
@@ -166,9 +167,56 @@ body {
     margin-left: 0px;
     border: 1px solid #009900;
     border-radius: 5px;
+    cursor: pointer;
     background-color: #1aff1a;
     color: black;
     font-weight: bold;
     margin: 0 auto 0 auto;
     height: 100%;
+}
+
+// home pug file elements
+
+#welcome {
+    @include navHeader-element(80%);
+    margin: 0 2px 0 2px;
+    padding-left: 5px;
+}
+
+.flex-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.menu-element {
+    height: 100px;
+    flex-basis: 50%;
+    margin-top: 8px;
+    color: white;
+}
+
+.menu-form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-button {
+    cursor: pointer;
+    border: 2px solid #751aff;
+    border-radius: 15px;
+    padding: 0;
+    width: 50%;
+    min-height: 50%;
+    font-size: 1.2rem;
+    background-color: #d1b3ff;
+    font-weight: bold;
+    &:hover {
+        background-color: #b380ff;
+    }
+
 }

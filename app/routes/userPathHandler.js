@@ -4,28 +4,17 @@ const {homedir} = require('os');
 
 function userPathHandler(req, res){
 
-    let wantedTemplate = {
-        title:'',
-        username:'',
+    let homeTemplate = {
+        username:basename(req.originalUrl),
         boards:[],
-        tables:[]
     };
 
-    const username = basename(basename(req.originalUrl));
-    const boardDir = join(homedir(), 'wanted_boards', username, 'boards');
+    const boardDir = join(homedir(), 'wanted_boards', homeTemplate.username, 'boards');
 
     readdir(boardDir, (err, files)=>{
-        readFile(join(boardDir, files[0]), (err, data)=>{
-            const wantedBoard = JSON.parse(data);
-
-            wantedTemplate.title = Object.keys(wantedBoard);
-            wantedTemplate.username = username;
-            wantedTemplate.tables = wantedBoard[Object.keys(wantedBoard)];
-            wantedTemplate.boards = files.map(file => parse(file).name);
-
-            res.render('wanted', wantedTemplate, (err, html)=>{
-                res.send(html);
-            });
+        homeTemplate.boards = files.map(file => parse(file).name);
+        res.render('home', homeTemplate, (err, html)=>{
+            res.send(html);
         });
     });
 }
