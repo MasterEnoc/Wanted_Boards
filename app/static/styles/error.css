@@ -1,0 +1,32 @@
+body {
+  background-color: #372073;
+  color: white;
+  font-family: monospace;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+p {
+  font-size: 1.4em;
+}
+
+.error-box {
+  display: block;
+  margin: 0 auto;
+  margin-top: 2%;
+  font-size: 16px;
+  width: 60%;
+  border: 1px solid red;
+  background-color: whitesmoke;
+}
+.error-box ul {
+  color: black;
+  text-align: center;
+}
+.error-box li {
+  text-align: left;
+}
+
+/*# sourceMappingURL=error.css.map */

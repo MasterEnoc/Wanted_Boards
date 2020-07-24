@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Error | Wanted Boards
+    link(rel="stylesheet" type="text/css" href="/styles/error.css")
+  body
+    h2 Error found
+    p An error was found during the execution of Wanted Boards, make sure to follow or check the following information:
+    div(class="error-box")
+      ul
+        li You must have wanted_boards directory in your home directory, if not create it manually or run the 'defaultDir' script.
+        br
+        li Make sure to have at least one user created, one user means have one directory within wanted_boards whose name is the name of the user you want to create, within the user directory must be a json file named as the user. You can create a user manually or execute the 'user' script.
+        br
+        li Each user must have a boards directory which contains json files, each json file is a board. You can create boards manually or run 'board' script.
+        br
+        li For more information look at the Wanted Board repository.

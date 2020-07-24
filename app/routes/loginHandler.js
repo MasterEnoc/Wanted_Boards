@@ -8,28 +8,33 @@ function handleGetLogin(res){
     });
 }
 
-function handlePostLogin(req, res){
+function handlePostLogin(req, res, next){
     readdir(homedir()+'/wanted_boards', (err, files)=>{
-        let fUser = files.some((file)=>file == req.body.username);
+        if (err){
+            // if wanted_boards directory does not exists the user will be redirected to the
+            // error middleware which will show an error page
+            next(err);
+        } else {
+            let fUser = files.some((file)=>file == req.body.username);
 
-        readFile(join(homedir(), 'wanted_boards', req.body.username, req.body.username+'.json'), (err, data)=>{
+            readFile(join(homedir(), 'wanted_boards', req.body.username, req.body.username+'.json'),
+            (err, data)=>{
 
-            let password;
+                let password;
 
-            try {
-                password = JSON.parse(data).password;
-            } catch (err) {
-                password = undefined;
-            }
+                try {
+                    password = JSON.parse(data).password;
+                } catch (err) {
+                    next();
+                }
 
-            if (fUser && password==req.body.password ){
-                res.redirect('/'+req.body.username);
-            } else {
-                res.render('login',{error:true},(err, html)=>{
-                    res.send(html);
-                });
-            }
-        });
+                if (fUser && password===req.body.password ){
+                    res.redirect('/'+req.body.username);
+                } else {
+                    next();
+                }
+            });
+        }
     });
 }
 
