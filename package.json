@@ -1,8 +1,12 @@
 {
-  "name": "wanted",
+  "name": "wanted_boards",
   "version": "1.0.0",
-  "description": "Wanted board for teams",
+  "description": "Personal and local todo list-like boards",
   "main": "./app/server.js",
+  "repository":{
+      "type":"git",
+      "url":"https://github.com/MasterEnoc/Wanted_Boards"
+    },
   "directories": {
     "test": "test"
   },
@@ -10,7 +14,7 @@
     "test": "mocha",
     "start": "node ./app/server.js"
   },
-  "author": "",
+  "author": "MasterEnoc",
   "license": "GPL-3.0",
   "dependencies": {
     "express": "^4.17.1",

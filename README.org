@@ -1,0 +1,172 @@
+* Wanted Boards
+Personal and local todo list-like boards, run it locally with flat
+files.
+
+* Overview
+This is a todo list-like board web application, it is made with
+express and pug. Runs locally, you only need to have a directory named
+'wanted_boards' in your home directory with some directory and files
+tree.
+
+* wanted_boards directory structure
+To properly works, Wanted Boards need the following structure:
+
+[[./img/dirTree.png]]
+
+Any user has to be a directory whose content is a directory named
+"boards" and json file named as the user.
+
+User json file contains the user name and its password.
+
+Boards directory contains all the boards that will be displayed by
+wanted boards in your browser. Each board file is a json file with a
+specific structure (currently, wanted boards only display three
+predefined tables, which are Todo, Doing and Done).
+
+All of this directories and file can be created manually or running
+its respectively bash script.
+
+* Bash scripts
+In the scripts are script that can help you creating the
+"wanted_boards" directory.
+
+Each file must be executable, you can do it running the following
+command:
+
+#+BEGIN_SRC bash
+    chmod a+x script_name
+#+END_SRC
+
+** defaultDir script
+It creates a default wanted_boards directory structure with a
+predefined user, password and boards.
+
+#+BEGIN_SRC bash
+    ./defaultDir [-b]
+#+END_SRC
+
+You can use this command with the -b flag to make a bare directory structure.
+
+** user script
+Create a user directory and its json file.
+
+#+BEGIN_SRC bash
+    ./user [new_user_name]
+#+END_SRC
+
+While executing will prompt you for a password, this password will be
+used as the new user's password.
+
+** board script
+Creates a new board file with a predefined structure. it needs an
+existing user to create a new board.
+
+#+BEGIN_SRC bash
+    ./board [user new_board]
+#+END_SRC
+
+* How to use
+First you need to have installed [[https://git-scm.com/][git]] and [[https://nodejs.org/en/][nodejs]].
+
+clone this repository with the following command:
+#+BEGIN_SRC bash
+    git clone https://github.com/MasterEnoc/Wanted_Boards.git
+#+END_SRC
+
+Install nodejs dependencies (you have to be in the wanted board directory):
+
+#+BEGIN_SRC bash
+    # go to the wanted boards directory
+    cd wanted
+    # install nodejs dependencies
+    npm install
+#+END_SRC
+
+Now start wanted boards with:
+#+BEGIN_SRC bash
+    npm start
+#+END_SRC
+
+Now open a web browser and go to http://localhost:8888/ you need to be
+aware running wanted in this way you must have a instance of your
+terminal running constantly the wanted service.
+
+** Login screen
+This is the first interaction you will have with Wanted Boards, try to
+login with any user and password you have created or if you executed
+the defaultDir script try:
+
+username: root
+password: password
+
+[[./img/login_screen.png]]
+
+** Home screen
+Here you can click in any displayed board.
+
+[[./img/home_screen.png]]
+
+** Board screen
+Here is where you can add and delete task in each table, every board
+can have different task.
+
+You can hover over the name of the current board and a list of all
+your boards will be displayed, you can click any board to change to it.
+
+[[./img/board_screen.png]]
+
+* How to run Wanted Boards as a service
+This explanation is based in the current operative system I'm using,
+Debian 10 (buster). Since Debian use systemd as init system you can
+follow this instructions:
+
+#+BEGIN_SRC bash
+    # create a file where all os services are stored
+    touch /etc/systemd/system/node.service
+#+END_SRC
+
+node.service file should contain the following
+#+BEGIN_SRC bash
+[Unit]
+Description=Personal todo board
+
+[Service]
+WorkingDirectory=/home/user/wanted
+ExecStart=/usr/bin/node /app/server.js
+Restart=always
+RestartSec=500ms
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs
+User=enoc
+Group=enoc
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+#+END_SRC
+
+Then you can start the service with:
+#+BEGIN_SRC bash
+    # start service
+    service node start
+    # stop service
+    service node stop
+    # restart service
+    service node restart
+#+END_SRC
+
+If you want to start wanted service each time your operative system
+boot run the following command:
+
+#+BEGIN_SRC bash
+    # we use 'node' due the file created in the systemd is named node.service
+    systemctl enable node
+#+END_SRC
+
+Now you should be able to go to your browser and open Wanted Boards
+without a new instance of your terminal constantly running with the
+nodejs process.
+
+You can find a more detailed version of how run any nodejs app as a
+service in [[https://riptutorial.com/node-js/topic/9258/running-node-js-as-a-service][riptutorials]].
