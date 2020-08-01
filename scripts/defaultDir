@@ -19,7 +19,7 @@ case $1 in
         errorEvaluation
 
         mkdir "$wanted"
-    ;;
+        ;;
     *)
         errorEvaluation
 
@@ -40,6 +40,6 @@ case $1 in
              \"Doing\":[\"You can make a new board running the \"board\" script\"],
              \"Done\":[\"You can add tasks writing and clicking on the 'add' button and delete tasks clicking on the 'D' button \"]}
         }" >> "$wanted/root/boards/welcome.json"
-    ;;
+        ;;
 esac
 

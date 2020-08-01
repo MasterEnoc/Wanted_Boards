@@ -2,33 +2,60 @@
 
 # This scripts makes a new user directory and json files, it has to be provided with user and
 # password to work.
-
 # ./user new_user_name
 
+# Flag -p list all users
+# ./user -p
+
+# Flag -d deletes the specified user
+# ./user -d user
 wanted=~/wanted_boards
 
-if [ -z "$1" ]; then
-    echo 'user argument was not specified' >&2
-    exit 1
-fi
+testUserArg() {
+    if [ -z $1 ]; then
+        echo 'user argument was not specified' >&2
+        exit 1
+    fi
+}
 
 if ! [ -d "$wanted" ]; then
     echo "wanted_boards directory does not exists, make it running the \"defaultDir\" script or make it manually" >&2
     exit 1
 fi
 
-if [ -d "$wanted/$1" ]; then
-    echo "user already exists, you can add a board running \"board\" script" >&2
-    exit 1
-fi
+case $1 in
+    -p)
+        ls $wanted | nl
+        ;;
 
-read -sp 'password: '
-echo ""
+    -d)
+        testUserArg $2
 
-mkdir "$wanted/$1"
-mkdir "$wanted/$1/boards"
+        if ! [ -d "$wanted/$2" ]; then
+            echo "User does not exist, delete is not necessary" >&2
+            exit 1
+        fi
 
-echo "{
+        rm -r "$wanted/$2"
+
+        ;;
+    *)
+        testUserArg $1
+
+        if [ -d "$wanted/$1" ]; then
+            echo "user already exists, you can add a board running \"board\" script" >&2
+            exit 1
+        fi
+
+        read -sp 'password: '
+        echo ""
+
+        mkdir "$wanted/$1"
+        mkdir "$wanted/$1/boards"
+
+        echo "{
         \"$1\":\"$1\",
         \"password\":\"$REPLY\"
-}" >> "$wanted/$1/$1.json"
+        }" >> "$wanted/$1/$1.json"
+        ;;
+esac

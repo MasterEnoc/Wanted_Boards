@@ -57,12 +57,31 @@ Create a user directory and its json file.
 While executing will prompt you for a password, this password will be
 used as the new user's password.
 
+User script can show all users and delete users with flag -p and -d,
+respectively.
+
+#+BEGIN_SRC bash
+# show all users
+./user -p
+# Delete a user
+./user -d user
+#+END_SRC
+
 ** board script
 Creates a new board file with a predefined structure. it needs an
 existing user to create a new board.
 
 #+BEGIN_SRC bash
-    ./board [user new_board]
+    ./board [user] [new_board]
+#+END_SRC
+
+To delete and see all boards, use board script with flags as follow:
+
+#+BEGIN_SRC bash
+# show boards from a specific user
+./board -p [user]
+# delete a board from a specific user
+./board -d [user] [board_name]
 #+END_SRC
 
 * How to use

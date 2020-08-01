@@ -6,31 +6,75 @@
 
 # ./board user new_board
 
+# -p flag shows all boards of the specified user
+# ./board -p user
+
+# Flag -d deletes a board of the specified user
+# ./board -d user board
 wanted=~/wanted_boards
 
-if [ -z "$1" ]; then
-    echo 'user argument was not specified' >&2
-    exit 1
-fi
+testUserArg() {
+    if [ -z $1 ]; then
+        echo 'user argument was not specified' >&2
+        exit 1
+    fi
+}
 
-if [ -z "$2" ]; then
-    echo 'new board name was not specified' >&2
-    exit 1
-fi
+testBoardArg() {
+    if [ -z $1 ]; then
+        echo 'new board name was not specified' >&2
+        exit 1
+    fi
+}
+
+testBoardsDir() {
+    if ! [ -d "$wanted/$1/boards" ]; then
+        echo 'boards directory does not exist, create it manually within the user directory' >&2
+        exit 1
+    fi
+}
+
+testUserDir() {
+    if ! [ -d "$wanted/$1" ]; then
+        echo "user does not exist, make it running the \"user\" script or make it manually" >&2
+        exit 1
+    fi
+}
 
 if ! [ -d "$wanted" ]; then
     echo "wanted_boards directory does not exists, make it running the \"defaultDir\" script or make it manually" >&2
     exit 1
 fi
 
-if ! [ -d "$wanted/$1" ]; then
-    echo "user does not exist, make it running the \"user\" script or make it manually" >&2
-    exit 1
-fi
+case $1 in
+    -p)
+        testUserArg $2
+        testBoardsDir $2
 
-echo "{
-    \"$2\":{
-    \"Todo\":[],
-    \"Doing\":[],
-    \"Done\":[]}
-}" >> "$wanted/$1/boards/$2.json"
+        ls "$wanted/$2/boards" | nl
+        ;;
+
+    -d)
+        testUserArg $2
+        testBoardArg $3
+        testBoardsDir $2
+        testUserDir $2
+
+        rm "$wanted/$2/boards/$3"
+        ;;
+
+    *)
+        testUserArg $1
+        testBoardArg $2
+        testBoardsDir $1
+        testUserDir $1
+
+        echo "{
+        \"$2\":{
+        \"Todo\":[],
+        \"Doing\":[],
+        \"Done\":[]}
+        }" >> "$wanted/$1/boards/$2.json"
+
+        ;;
+esac
